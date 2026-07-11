@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="meta-title">Rafael & Sofia - Casamento</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Casamento de Rafael e Sofia - Dezembro de 2026. Confirme sua presença e acompanhe os detalhes do nosso grande dia!">
+    <meta property="og:title" content="Rafael & Sofia - Casamento">
+    <meta property="og:description" content="Dezembro de 2026 | Igreja da Oliveira. Venha celebrar conosco!">
+    <meta property="og:image" content="img/casam1.webp">
+    <meta property="og:url" content="https://seu-site.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* --- CONFIGURAÇÕES GERAIS E SCROLLBAR --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #e6b255; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d49d3a; }
+
+        html { scrollbar-width: thin; scrollbar-color: #e6b255 #f1f1f1; scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; color: #555; background-color: #fff; line-height: 1.6; transition: background-color 0.3s, color 0.3s; }
+
+        /* Modo Noturno */
+        body.dark-mode { background-color: #1a1a1a; color: #ddd; }
+        body.dark-mode header { background-color: #1a1a1a; border-bottom-color: #333; }
+        body.dark-mode .logo { color: #ffffff !important; }
+        body.dark-mode nav a { color: #aaa; }
+        body.dark-mode nav a:hover, body.dark-mode nav a.active { color: #e6b255; }
+        body.dark-mode .section-title { color: #eee; }
+        body.dark-mode p { color: #bbb; }
+        body.dark-mode footer { border-top-color: #333; color: #777; }
+        body.dark-mode .form-control { background-color: #2a2a2a; border-color: #444; color: #ddd; }
+        body.dark-mode .form-control:focus { border-color: #e6b255; }
+        body.dark-mode .event-item strong { color: #ddd; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        a { text-decoration: none; color: inherit; cursor: pointer; }
+
+        /* --- CORES E TIPOGRAFIA --- */
+        .script-title { font-family: 'Playfair Display', serif; font-style: italic; color: #e6b255; font-size: 2.5rem; font-weight: 400; }
+        .section-title { font-family: 'Poppins', sans-serif; font-size: 2.2rem; font-weight: 600; color: #222; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; transition: color 0.3s; }
+        .main-title { font-family: 'Poppins', sans-serif; font-size: 4rem; font-weight: 600; color: #222; text-transform: uppercase; letter-spacing: 2px; margin: 10px 0; transition: color 0.3s; }
+        body.dark-mode .main-title { color: #ffffff; }
+        p { color: #777; margin-bottom: 20px; transition: color 0.3s; }
+        .section-padding { padding: 100px 0; }
+
+        /* --- BOTÕES --- */
+        .btn-outline { display: inline-block; padding: 12px 40px; border: 2px solid #e6b255; color: #e6b255; font-family: 'Poppins', sans-serif; text-transform: uppercase; font-weight: 400; letter-spacing: 1px; background: transparent; transition: all 0.3s ease; cursor: pointer; }
+        .btn-outline:hover { background: #e6b255; color: #fff; transform: scale(1.05); box-shadow: 0 5px 15px rgba(230, 178, 85, 0.3); }
+
+        /* --- BOTÃO VOLTAR AO TOPO --- */
+        #back-to-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: #e6b255; color: #fff; border: none; border-radius: 50%; font-size: 24px; cursor: pointer; display: none; transition: all 0.3s; z-index: 999; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        #back-to-top:hover { background: #d49d3a; transform: translateY(-3px); box-shadow: 0 5px 20px rgba(230, 178, 85, 0.4); }
+
+        /* --- FLOATING ACTION BUTTON (FAB) & LEQUE --- */
+        #fab-container {
+            position: fixed; bottom: 100px; right: 30px; z-index: 1000;
+            display: flex; flex-direction: column; align-items: center; gap: 15px;
+        }
+
+        /* Botão Principal com ✚ */
+        #fab-main {
+            width: 56px; height: 56px; border-radius: 50%; background: #e6b255;
+            color: #fff; border: none; font-size: 32px; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(230, 178, 85, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex; justify-content: center; align-items: center;
+            font-weight: 300;
+            line-height: 1;
+        }
+        #fab-main:hover { transform: scale(1.1); background: #d49d3a; }
+        #fab-main.active { transform: rotate(45deg); }
+
+        /* Botões do Leque (Bandeiras e Lua) */
+        .fab-option {
+            width: 44px; height: 44px; border-radius: 50%; border: none;
+            background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            cursor: pointer; transition: all 0.3s ease; opacity: 0; transform: scale(0.5);
+            pointer-events: none; display: flex; justify-content: center; align-items: center;
+            padding: 0; overflow: hidden;
+        }
+        .fab-option img { width: 100%; height: 100%; object-fit: cover; }
+        .fab-option:hover { transform: scale(1.1) !important; }
+        
+        /* Modo noturno dentro do leque */
+        #fab-darkmode { font-size: 20px; background: #222; color: #fff; }
+        body.dark-mode #fab-darkmode { background: #e6b255; color: #1a1a1a; }
+
+        /* Quando ativo, os botões aparecem em leque */
+        #fab-container.open .fab-option {
+            opacity: 1; transform: scale(1); pointer-events: auto;
+        }
+
+        /* Espaçamento do Leque (um embaixo do outro) */
+        #fab-container.open .fab-option:nth-child(1) { transition-delay: 0.05s; }
+        #fab-container.open .fab-option:nth-child(2) { transition-delay: 0.10s; }
+        #fab-container.open .fab-option:nth-child(3) { transition-delay: 0.15s; }
+        #fab-container.open .fab-option:nth-child(4) { transition-delay: 0.20s; }
+
+        /* --- HEADER (NAVEGAÇÃO) --- */
+        header { background: #fff; padding: 20px 0; width: 100%; border-bottom: 1px solid #f0f0f0; position: sticky; top: 0; z-index: 100; transition: background-color 0.3s, border-color 0.3s; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.2rem; letter-spacing: 2px; color: #222; transition: color 0.3s; }
+        
+        nav { display: flex; align-items: center; }
+        nav a { margin-left: 30px; color: #888; font-size: 0.9rem; transition: color 0.3s; position: relative; }
+        nav a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: #e6b255; transition: width 0.3s; }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        nav a:hover, nav a.active { color: #e6b255; }
+
+        /* Menu Hambúrguer */
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; padding: 5px; }
+        .hamburger span { width: 25px; height: 3px; background: #222; transition: 0.3s; border-radius: 3px; }
+        body.dark-mode .hamburger span { background: #ddd; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* --- SISTEMA DE PÁGINAS --- */
+        .page { display: none; animation: fadeIn 0.5s ease; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- PÁGINA 1: INÍCIO --- */
+        .hero-section { min-height: 85vh; display: flex; align-items: center; position: relative; }
+        .hero-content { position: relative; z-index: 2; max-width: 50%; }
+        .date-line { display: flex; align-items: center; margin-top: 20px; font-size: 0.9rem; font-weight: 300; }
+        .date-line .line { display: inline-block; width: 40px; height: 2px; background-color: #e6b255; margin-right: 15px; }
+        .hero-image-wrapper { position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 55%; height: 90%; overflow: hidden; z-index: 1; }
+        .hero-image-wrapper img { width: 100%; height: 100%; object-fit: cover; object-position: 45% center; }
+
+        .countdown { display: flex; gap: 20px; margin: 30px 0; flex-wrap: wrap; }
+        .countdown-item { text-align: center; background: rgba(255,255,255,0.9); padding: 15px 25px; border-radius: 8px; min-width: 80px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        body.dark-mode .countdown-item { background: rgba(30,30,30,0.9); }
+        .countdown-item .number { font-size: 2.5rem; font-weight: 700; color: #e6b255; display: block; line-height: 1; }
+        .countdown-item .label { font-size: 0.8rem; text-transform: uppercase; color: #888; margin-top: 5px; display: block; }
+        body.dark-mode .countdown-item .label { color: #aaa; }
+
+        @media (min-width: 1200px) { .hero-content { transform: translateX(-260px); } }
+
+        .two-columns { display: flex; align-items: center; gap: 60px; }
+        .two-columns.reverse { flex-direction: row-reverse; }
+        .col-image { flex: 1; overflow: hidden; border-radius: 8px; }
+        .col-image img { width: 100%; height: auto; border-radius: 8px; display: block; transition: transform 0.5s ease; }
+        .col-image:hover img { transform: scale(1.03); }
+        .col-text { flex: 1; padding: 20px; }
+
+        .map-container { flex: 1; height: 400px; background: #eee; border-radius: 8px; overflow: hidden; }
+        .map-container iframe { width: 100%; height: 100%; border: 0; }
+        .event-item { margin-bottom: 15px; padding: 15px; background: #f9f9f9; border-radius: 8px; border-left: 4px solid #e6b255; transition: background 0.3s; }
+        body.dark-mode .event-item { background: #2a2a2a; }
+        .event-item strong { display: block; color: #333; margin-bottom: 5px; }
+        body.dark-mode .event-item strong { color: #ddd; }
+        .event-item span { color: #777; }
+        body.dark-mode .event-item span { color: #bbb; }
+
+        .rsvp-form { flex: 1; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; color: #555; }
+        body.dark-mode .form-group label { color: #bbb; }
+        .form-control { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; outline: none; transition: border-color 0.3s, background 0.3s, color 0.3s; }
+        .form-control:focus { border-color: #e6b255; box-shadow: 0 0 0 3px rgba(230, 178, 85, 0.1); }
+        .radio-group label { display: flex; align-items: center; margin-bottom: 10px; font-weight: 300; cursor: pointer; padding: 10px; border-radius: 8px; transition: background 0.3s; }
+        .radio-group label:hover { background: #f5f5f5; }
+        body.dark-mode .radio-group label:hover { background: #2a2a2a; }
+        .radio-group input[type="radio"] { margin-right: 10px; accent-color: #e6b255; width: 18px; height: 18px; cursor: pointer; }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
+        .gallery-grid .gallery-item { overflow: hidden; border-radius: 8px; cursor: pointer; position: relative; aspect-ratio: 1; }
+        .gallery-grid .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-grid .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-grid .gallery-item::after { content: '🔍'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); font-size: 2rem; background: rgba(0,0,0,0.5); padding: 15px; border-radius: 50%; transition: transform 0.3s; }
+        .gallery-grid .gallery-item:hover::after { transform: translate(-50%, -50%) scale(1); }
+
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; justify-content: center; align-items: center; animation: fadeIn 0.3s ease; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        .lightbox-close { position: absolute; top: 30px; right: 30px; color: #fff; font-size: 3rem; cursor: pointer; transition: transform 0.3s; background: none; border: none; }
+        .lightbox-close:hover { transform: rotate(90deg); }
+
+        /* --- FOOTER --- */
+        footer { padding: 40px 0; border-top: 1px solid #eee; text-align: center; color: #999; font-size: 0.8rem; transition: border-color 0.3s, color 0.3s; }
+
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: #4CAF50; color: #fff; padding: 15px 30px; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); opacity: 0; transition: all 0.5s ease; z-index: 3000; font-weight: 500; }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .toast.error { background: #f44336; }
+
+        /* ============================================= */
+        /* RESPONSIVIDADE */
+        /* ============================================= */
+
+        @media (max-width: 992px) {
+            .main-title { font-size: 3.5rem; }
+            .hero-image-wrapper { width: 50%; }
+            .script-title { margin-top: 2.6rem; }
+            .hero-content { transform: translateX(-180px); z-index: 2; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 15px 0; }
+            .hamburger { display: flex; }
+            
+            nav { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: #fff; padding: 20px; border-bottom: 1px solid #f0f0f0; box-shadow: 0 5px 20px rgba(0,0,0,0.1); flex-direction: column; }
+            body.dark-mode nav { background: #1a1a1a; border-bottom-color: #333; }
+            nav.open { display: flex; }
+            nav a { margin: 10px 0; padding: 10px; width: 100%; text-align: center; border-radius: 4px; }
+            nav a:hover { background: #f5f5f5; }
+            body.dark-mode nav a:hover { background: #2a2a2a; }
+
+            .hero-section { min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0; background-image: url('img/casam1.webp'); background-size: cover; background-position: center center; position: relative; }
+            .hero-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1; }
+            .hero-content { max-width: 100%; padding: 0 20px; z-index: 2; transform: translateX(0); }
+            .hero-image-wrapper { display: none; }
+            .date-line { justify-content: center; }
+            .date-line .line { display: none; }
+            .hero-content .main-title { color: #fff; text-shadow: 0 4px 10px rgba(0,0,0,0.8); }
+            .hero-content .script-title { color: #e6b255; text-shadow: 0 4px 10px rgba(0,0,0,0.8); }
+            .hero-content .date-line { color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+            .countdown { justify-content: center; }
+            .countdown-item { padding: 10px 15px; min-width: 60px; }
+            .countdown-item .number { font-size: 1.8rem; }
+            .two-columns { flex-direction: column !important; gap: 40px; }
+            .col-image { width: 100%; }
+            .main-title { font-size: 2.8rem; }
+            .script-title { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
+            .section-padding { padding: 60px 0; }
+            .map-container { height: 300px; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
+            
+            #back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px; font-size: 20px; }
+            #fab-container { bottom: 80px; right: 20px; }
+            #fab-main { width: 48px; height: 48px; font-size: 28px; }
+            .fab-option { width: 38px; height: 38px; }
+        }
+
+        @media (max-width: 480px) {
+            .main-title { font-size: 2.2rem; }
+            .script-title { font-size: 1.6rem; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .countdown-item { padding: 8px 12px; min-width: 50px; }
+            .countdown-item .number { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast"></div>
+
+    <!-- FLOATING ACTION BUTTON (FAB) & LEQUE -->
+    <div id="fab-container">
+        <!-- Opção 1: Lua (Modo Noturno) -->
+        <button class="fab-option" id="fab-darkmode" onclick="toggleDarkMode()" title="Modo Noturno">🌙</button>
+        
+        <!-- Opção 2: Bandeira Espanhol -->
+        <button class="fab-option" onclick="setLanguage('es')" title="Español">
+            <img src="https://flagcdn.com/w40/es.png" alt="ES">
+        </button>
+        
+        <!-- Opção 3: Bandeira Inglês -->
+        <button class="fab-option" onclick="setLanguage('en')" title="English">
+            <img src="https://flagcdn.com/w40/us.png" alt="EN">
+        </button>
+        
+        <!-- Opção 4: Bandeira Português -->
+        <button class="fab-option" onclick="setLanguage('pt')" title="Português">
+            <img src="https://flagcdn.com/w40/br.png" alt="PT">
+        </button>
+
+        <!-- Botão Principal com ✚ -->
+        <button id="fab-main" onclick="toggleFab()">✚</button>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <img id="lightbox-img" src="" alt="Imagem ampliada">
+    </div>
+
+    <!-- NAVEGAÇÃO -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">RAFAEL & SOFIA</div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav id="nav-menu">
+                <a onclick="showPage('home')" class="active" data-key="nav_home">Início</a>
+                <a onclick="showPage('quem-somos')" data-key="nav_who">Quem Somos</a>
+                <a onclick="showPage('data')" data-key="nav_date">Dia do Casamento</a>
+                <a onclick="showPage('galeria')" data-key="nav_gallery">Galeria</a>
+                <a onclick="showPage('rsvp')" data-key="nav_rsvp">RSVP</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- PÁGINA 1: INÍCIO -->
+    <div id="home" class="page active">
+        <section class="hero-section">
+            <div class="container hero-content">
+                <h2 class="script-title" data-aos="fade-up" data-key="hero_subtitle">O dia chegou, vamos-nos casar!</h2>
+                <h1 class="main-title" data-aos="fade-up" data-aos-delay="100">RAFAEL & SOFIA</h1>
+                <div class="date-line" data-aos="fade-up" data-aos-delay="200">
+                    <span class="line"></span>
+                    <span data-key="hero_date">DEZEMBRO DE 2026 | IGREJA DA OLIVEIRA</span>
+                </div>
+                
+                <div class="countdown" data-aos="fade-up" data-aos-delay="300">
+                    <div class="countdown-item">
+                        <span class="number" id="days">00</span>
+                        <span class="label" data-key="count_days">Dias</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="number" id="hours">00</span>
+                        <span class="label" data-key="count_hours">Horas</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="number" id="minutes">00</span>
+                        <span class="label" data-key="count_minutes">Minutos</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="number" id="seconds">00</span>
+                        <span class="label" data-key="count_seconds">Segundos</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="img/casam1.webp" alt="Rafael e Sofia sorrindo juntos" loading="lazy">
+            </div>
+        </section>
+        
+        <div class="container two-columns section-padding" style="padding-top: 0;">
+            <div class="col-image" data-aos="fade-right">
+                <img src="img/casam2.webp" alt="Casal se divertindo" loading="lazy">
+            </div>
+            <div class="col-text" data-aos="fade-left">
+                <h2 class="script-title" data-key="home_story_title">Depois de 8 anos juntos</h2>
+                <h3 class="section-title" data-key="home_story_sub">DECIDIMOS DAR O NÓ</h3>
+                <p data-key="home_story_p1">Oito anos de amor, cumplicidade e sonhos compartilhados. Cada momento ao seu lado foi especial, e agora queremos celebrar essa união com as pessoas que amamos.</p>
+                <p data-key="home_story_p2">Nossa história começou em um dia comum, mas se tornou extraordinária. Convidamos você para fazer parte do próximo capítulo das nossas vidas.</p>
+                <a onclick="showPage('quem-somos')" class="btn-outline" data-key="btn_whoweare">QUEM SOMOS</a>
+            </div>
+        </div>
+
+        <div class="container two-columns reverse section-padding">
+            <div class="col-image" data-aos="fade-left">
+                <img src="img/casam3.webp" alt="Casal rindo juntos" loading="lazy">
+            </div>
+            <div class="col-text" data-aos="fade-right">
+                <h2 class="script-title" data-key="home_rsvp_title">Por isso, esperamos que venha</h2>
+                <h3 class="section-title" data-key="home_rsvp_sub">POR FAVOR AVISE-NOS</h3>
+                <p data-key="home_rsvp_p1">Sua presença é o presente mais especial que podemos receber. Por favor, confirme sua presença até o dia 30 de novembro para que possamos organizar tudo com carinho.</p>
+                <p data-key="home_rsvp_p2">Queremos que cada detalhe seja perfeito para celebrar esse momento único ao lado de vocês. Contamos com sua resposta!</p>
+                <a onclick="showPage('rsvp')" class="btn-outline" data-key="btn_rsvp_now">RSVP AGORA</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 2: QUEM SOMOS -->
+    <div id="quem-somos" class="page">
+        <section class="section-padding history-section">
+            <div class="container two-columns">
+                <div class="col-image" data-aos="fade-right">
+                    <img src="img/casam2.webp" alt="Rafael e Sofia abraçados" loading="lazy">
+                </div>
+                <div class="col-text" data-aos="fade-left">
+                    <h2 class="script-title" data-key="who_title">Nossa história</h2>
+                    <h3 class="section-title" data-key="who_sub">COMO TUDO COMEÇOU</h3>
+                    <p data-key="who_p1">Nos conhecemos em 2017, em um café no centro da cidade. Foi amor à primeira vista, ou pelo menos foi o que sempre dizemos quando contamos essa história. O que começou como uma conversa casual se transformou em uma conexão profunda que só cresceu com o tempo.</p>
+                    <p data-key="who_p2">Desde então, compartilhamos viagens, risadas, desafios e conquistas. Aprendemos juntos o valor da parceria, da paciência e do amor incondicional. Cada ano que passou só fortaleceu nossa certeza de que queremos passar o resto da vida um ao lado do outro.</p>
+                    <p data-key="who_p3">E agora, em 2026, chegou o momento de oficializar essa união diante de Deus e de todos vocês, que fazem parte da nossa história. Mal podemos esperar para compartilhar esse dia especial com quem amamos!</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PÁGINA 3: DATA -->
+    <div id="data" class="page">
+        <section class="section-padding">
+            <div class="container two-columns reverse">
+                <div class="map-container" data-aos="fade-left">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000.9999!2d-8.6291!3d41.1579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465c1e5a3d77b%3A0x8c8eaa7f9a7f7f7!2sIgreja%20da%20Oliveira%2C%20Porto!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" title="Mapa da Igreja da Oliveira"></iframe>
+                </div>
+                <div class="col-text" data-aos="fade-right">
+                    <h2 class="script-title" data-key="date_title">Dezembro de 2026</h2>
+                    <h3 class="section-title" data-key="date_sub">MARQUE A DATA</h3>
+                    <p data-key="date_p1">O grande dia está chegando! Preparamos cada detalhe com muito carinho para celebrar esse momento especial. A data exata será anunciada em breve, mas já reserve o mês de dezembro de 2026!</p>
+                    
+                    <div class="event-details">
+                        <div class="event-item">
+                            <strong data-key="date_item1_title">💒 Cerimônia Religiosa</strong>
+                            <span data-key="date_item1_desc">Horário a definir - Igreja da Oliveira, Rua do Ouro 797, 4150-555 Porto</span>
+                        </div>
+                        <div class="event-item">
+                            <strong data-key="date_item2_title">🎉 Festa para família e amigos</strong>
+                            <span data-key="date_item2_desc">Horário a definir - Restaurante Árvore Branca, Rua do Ouro 797, 4150 Porto</span>
+                        </div>
+                        <div class="event-item">
+                            <strong data-key="date_item3_title">👗 Código de Vestimenta</strong>
+                            <span data-key="date_item3_desc">Traje Passeio - Social (sugerimos cores claras e elegantes)</span>
+                        </div>
+                        <div class="event-item">
+                            <strong data-key="date_item4_title">🚗 Estacionamento</strong>
+                            <span data-key="date_item4_desc">Estacionamento disponível no local da festa. Recomendamos chegar com 15 minutos de antecedência.</span>
+                        </div>
+                        <div class="event-item">
+                            <strong data-key="date_item5_title">📅 Data exata</strong>
+                            <span data-key="date_item5_desc">Em breve divulgaremos o dia exato! Fique atento ao nosso site e redes sociais.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PÁGINA 4: GALERIA -->
+    <div id="galeria" class="page">
+        <section class="section-padding">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 40px;" data-aos="fade-up">
+                    <h2 class="script-title" data-key="gallery_title">Momentos especiais</h2>
+                    <h3 class="section-title" data-key="gallery_sub">NOSSAS LEMBRANÇAS</h3>
+                    <p data-key="gallery_p">Alguns dos nossos momentos favoritos juntos. Cada foto conta uma história de amor e felicidade.</p>
+                </div>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-aos="fade-up" onclick="openLightbox('img/casam1.webp')">
+                        <img src="img/galeria1.webp" alt="Casal sorrindo" loading="lazy">
+                    </div>
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="100" onclick="openLightbox('img/casam2.webp')">
+                        <img src="img/galeria2.webp" alt="Casal se divertindo" loading="lazy">
+                    </div>
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="200" onclick="openLightbox('img/casam3.webp')">
+                        <img src="img/galeria3.webp" alt="Casal rindo" loading="lazy">
+                    </div>
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="300" onclick="openLightbox('img/casam1.webp')">
+                        <img src="img/casam1.webp" alt="Casal feliz" loading="lazy">
+                    </div>
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="400" onclick="openLightbox('img/casam2.webp')">
+                        <img src="img/casam2.webp" alt="Casal abraçado" loading="lazy">
+                    </div>
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="500" onclick="openLightbox('img/casam3.webp')">
+                        <img src="img/casam3.webp" alt="Casal em um momento especial" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PÁGINA 5: RSVP -->
+    <div id="rsvp" class="page">
+        <section class="section-padding">
+            <div class="container two-columns">
+                <div class="col-text" data-aos="fade-right">
+                    <h2 class="script-title" data-key="rsvp_title">Contamos consigo?</h2>
+                    <h3 class="section-title" data-key="rsvp_sub">POR FAVOR AVISE-NOS</h3>
+                    <p data-key="rsvp_p1">Sua presença é muito importante para nós! Por favor, confirme até o mês de <strong>novembro de 2026</strong> para que possamos organizar tudo com carinho e atenção aos detalhes.</p>
+                    <p data-key="rsvp_p2">Se tiver alguma restrição alimentar ou necessidade especial, não deixe de nos avisar no campo de observações. Faremos o possível para atender todos os nossos convidados da melhor forma possível.</p>
+                    <p style="margin-top: 20px; font-size: 0.9rem; color: #e6b255;" data-key="rsvp_p3">❤️ Mal podemos esperar para celebrar com você em dezembro de 2026!</p>
+                </div>
+                <div class="rsvp-form" data-aos="fade-left">
+                    <form id="rsvp-form">
+                        <div class="form-group">
+                            <label for="nome" data-key="form_name">Nome completo *</label>
+                            <input type="text" id="nome" class="form-control" placeholder="Digite seu nome" data-key="form_name_placeholder" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" data-key="form_email">E-mail *</label>
+                            <input type="email" id="email" class="form-control" placeholder="seu@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label data-key="form_presence_label">Vai estar presente? *</label>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="presenca" value="sim" required> <span data-key="form_presence_yes">✅ Aceito o convite com muito gosto</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="presenca" value="nao"> <span data-key="form_presence_no">❌ Lamento, mas não posso estar presente</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="acompanhantes" data-key="form_guests">Quantos acompanhantes?</label>
+                            <input type="number" id="acompanhantes" class="form-control" min="0" max="5" placeholder="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mensagem" data-key="form_msg">Alguma outra coisa que devemos saber? :)</label>
+                            <textarea id="mensagem" class="form-control" rows="4" placeholder="Restrições alimentares, necessidades especiais, ou uma mensagem para os noivos..." data-key="form_msg_placeholder"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-outline" style="width: 100%;" data-key="form_submit">ENVIAR CONFIRMAÇÃO</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- RODAPÉ CORRIGIDO -->
+    <footer>
+        <div class="container">
+            <p style="font-weight: 600; font-size: 1rem;">RAFAEL & SOFIA</p>
+            <p data-key="footer_date">💍 Dezembro de 2026</p>
+            <p style="margin-top: 5px; font-size: 0.7rem;"><span data-key="footer_dev">Desenvolvido por</span> <strong>PabloG.Dev</strong></p>
+            <p style="margin-top: 5px; font-size: 0.7rem;" data-key="footer_rights">© 2026 Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // ============ DICIONÁRIO DE TRADUÇÃO ============
+        const translations = {
+            'pt': {
+                'nav_home': 'Início', 'nav_who': 'Quem Somos', 'nav_date': 'Dia do Casamento',
+                'nav_gallery': 'Galeria', 'nav_rsvp': 'RSVP',
+                'hero_subtitle': 'O dia chegou, vamos-nos casar!',
+                'hero_date': 'DEZEMBRO DE 2026 | IGREJA DA OLIVEIRA',
+                'count_days': 'Dias', 'count_hours': 'Horas', 'count_minutes': 'Minutos', 'count_seconds': 'Segundos',
+                'home_story_title': 'Depois de 8 anos juntos', 'home_story_sub': 'DECIDIMOS DAR O NÓ',
+                'home_story_p1': 'Oito anos de amor, cumplicidade e sonhos compartilhados. Cada momento ao seu lado foi especial, e agora queremos celebrar essa união com as pessoas que amamos.',
+                'home_story_p2': 'Nossa história começou em um dia comum, mas se tornou extraordinária. Convidamos você para fazer parte do próximo capítulo das nossas vidas.',
+                'btn_whoweare': 'QUEM SOMOS',
+                'home_rsvp_title': 'Por isso, esperamos que venha', 'home_rsvp_sub': 'POR FAVOR AVISE-NOS',
+                'home_rsvp_p1': 'Sua presença é o presente mais especial que podemos receber. Por favor, confirme sua presença até o dia 30 de novembro para que possamos organizar tudo com carinho.',
+                'home_rsvp_p2': 'Queremos que cada detalhe seja perfeito para celebrar esse momento único ao lado de vocês. Contamos com sua resposta!',
+                'btn_rsvp_now': 'RSVP AGORA',
+                'who_title': 'Nossa história', 'who_sub': 'COMO TUDO COMEÇOU',
+                'who_p1': 'Nos conhecemos em 2017, em um café no centro da cidade. Foi amor à primeira vista, ou pelo menos foi o que sempre dizemos quando contamos essa história. O que começou como uma conversa casual se transformou em uma conexão profunda que só cresceu com o tempo.',
+                'who_p2': 'Desde então, compartilhamos viagens, risadas, desafios e conquistas. Aprendemos juntos o valor da parceria, da paciência e do amor incondicional. Cada ano que passou só fortaleceu nossa certeza de que queremos passar o resto da vida um ao lado do outro.',
+                'who_p3': 'E agora, em 2026, chegou o momento de oficializar essa união diante de Deus e de todos vocês, que fazem parte da nossa história. Mal podemos esperar para compartilhar esse dia especial com quem amamos!',
+                'date_title': 'Dezembro de 2026', 'date_sub': 'MARQUE A DATA',
+                'date_p1': 'O grande dia está chegando! Preparamos cada detalhe com muito carinho para celebrar esse momento especial. A data exata será anunciada em breve, mas já reserve o mês de dezembro de 2026!',
+                'date_item1_title': '💒 Cerimônia Religiosa', 'date_item1_desc': 'Horário a definir - Igreja da Oliveira, Rua do Ouro 797, 4150-555 Porto',
+                'date_item2_title': '🎉 Festa para família e amigos', 'date_item2_desc': 'Horário a definir - Restaurante Árvore Branca, Rua do Ouro 797, 4150 Porto',
+                'date_item3_title': '👗 Código de Vestimenta', 'date_item3_desc': 'Traje Passeio - Social (sugerimos cores claras e elegantes)',
+                'date_item4_title': '🚗 Estacionamento', 'date_item4_desc': 'Estacionamento disponível no local da festa. Recomendamos chegar com 15 minutos de antecedência.',
+                'date_item5_title': '📅 Data exata', 'date_item5_desc': 'Em breve divulgaremos o dia exato! Fique atento ao nosso site e redes sociais.',
+                'gallery_title': 'Momentos especiais', 'gallery_sub': 'NOSSAS LEMBRANÇAS',
+                'gallery_p': 'Alguns dos nossos momentos favoritos juntos. Cada foto conta uma história de amor e felicidade.',
+                'rsvp_title': 'Contamos consigo?', 'rsvp_sub': 'POR FAVOR AVISE-NOS',
+                'rsvp_p1': 'Sua presença é muito importante para nós! Por favor, confirme até o mês de <strong>novembro de 2026</strong> para que possamos organizar tudo com carinho e atenção aos detalhes.',
+                'rsvp_p2': 'Se tiver alguma restrição alimentar ou necessidade especial, não deixe de nos avisar no campo de observações. Faremos o possível para atender todos os nossos convidados da melhor forma possível.',
+                'rsvp_p3': '❤️ Mal podemos esperar para celebrar com você em dezembro de 2026!',
+                'form_name': 'Nome completo *', 'form_name_placeholder': 'Digite seu nome',
+                'form_email': 'E-mail *', 'form_presence_label': 'Vai estar presente? *',
+                'form_presence_yes': '✅ Aceito o convite com muito gosto',
+                'form_presence_no': '❌ Lamento, mas não posso estar presente',
+                'form_guests': 'Quantos acompanhantes?', 'form_msg': 'Alguma outra coisa que devemos saber? :)',
+                'form_msg_placeholder': 'Restrições alimentares, necessidades especiais, ou uma mensagem para os noivos...',
+                'form_submit': 'ENVIAR CONFIRMAÇÃO',
+                'footer_date': '💍 Dezembro de 2026', 'footer_dev': 'Desenvolvido por',
+                'footer_rights': '© 2026 Todos os direitos reservados',
+                'meta_title': 'Rafael & Sofia - Casamento'
+            },
+            'en': {
+                'nav_home': 'Home', 'nav_who': 'About Us', 'nav_date': 'Wedding Day',
+                'nav_gallery': 'Gallery', 'nav_rsvp': 'RSVP',
+                'hero_subtitle': 'The day has come, we are getting married!',
+                'hero_date': 'DECEMBER 2026 | OLIVEIRA CHURCH',
+                'count_days': 'Days', 'count_hours': 'Hours', 'count_minutes': 'Mins', 'count_seconds': 'Secs',
+                'home_story_title': 'After 8 years together', 'home_story_sub': 'WE DECIDED TO TIE THE KNOT',
+                'home_story_p1': 'Eight years of love, partnership, and shared dreams. Every moment by your side was special, and now we want to celebrate this union with the people we love.',
+                'home_story_p2': 'Our story started on an ordinary day, but became extraordinary. We invite you to be part of the next chapter of our lives.',
+                'btn_whoweare': 'WHO WE ARE',
+                'home_rsvp_title': 'That is why we hope you come', 'home_rsvp_sub': 'PLEASE LET US KNOW',
+                'home_rsvp_p1': 'Your presence is the most special gift we can receive. Please confirm your attendance by November 30th so we can organize everything with care.',
+                'home_rsvp_p2': 'We want every detail to be perfect to celebrate this unique moment with you. We count on your response!',
+                'btn_rsvp_now': 'RSVP NOW',
+                'who_title': 'Our story', 'who_sub': 'HOW IT ALL BEGAN',
+                'who_p1': 'We met in 2017, at a café downtown. It was love at first sight, or at least that is what we always say when we tell this story. What started as a casual conversation turned into a deep connection that only grew over time.',
+                'who_p2': 'Since then, we have shared travels, laughter, challenges, and achievements. We learned together the value of partnership, patience, and unconditional love. Each year that passed only strengthened our certainty that we want to spend the rest of our lives by each other\'s side.',
+                'who_p3': 'And now, in 2026, the time has come to make this union official before God and all of you, who are part of our story. We can hardly wait to share this special day with those we love!',
+                'date_title': 'December 2026', 'date_sub': 'SAVE THE DATE',
+                'date_p1': 'The big day is coming! We have prepared every detail with great care to celebrate this special moment. The exact date will be announced soon, but already reserve the month of December 2026!',
+                'date_item1_title': '💒 Religious Ceremony', 'date_item1_desc': 'Time TBD - Oliveira Church, Rua do Ouro 797, 4150-555 Porto',
+                'date_item2_title': '🎉 Party for family and friends', 'date_item2_desc': 'Time TBD - Árvore Branca Restaurant, Rua do Ouro 797, 4150 Porto',
+                'date_item3_title': '👗 Dress Code', 'date_item3_desc': 'Smart Casual - Social (we suggest light and elegant colors)',
+                'date_item4_title': '🚗 Parking', 'date_item4_desc': 'Parking available at the party venue. We recommend arriving 15 minutes early.',
+                'date_item5_title': '📅 Exact Date', 'date_item5_desc': 'We will announce the exact day soon! Stay tuned to our website and social media.',
+                'gallery_title': 'Special moments', 'gallery_sub': 'OUR MEMORIES',
+                'gallery_p': 'Some of our favorite moments together. Every photo tells a story of love and happiness.',
+                'rsvp_title': 'Can we count on you?', 'rsvp_sub': 'PLEASE LET US KNOW',
+                'rsvp_p1': 'Your presence is very important to us! Please confirm by <strong>November 2026</strong> so we can organize everything with care and attention to detail.',
+                'rsvp_p2': 'If you have any dietary restrictions or special needs, please let us know in the observations field. We will do our best to accommodate all our guests.',
+                'rsvp_p3': '❤️ We can hardly wait to celebrate with you in December 2026!',
+                'form_name': 'Full name *', 'form_name_placeholder': 'Enter your name',
+                'form_email': 'Email *', 'form_presence_label': 'Will you be attending? *',
+                'form_presence_yes': '✅ I accept the invitation with pleasure',
+                'form_presence_no': '❌ I am sorry, but I cannot attend',
+                'form_guests': 'How many guests?', 'form_msg': 'Anything else we should know? :)',
+                'form_msg_placeholder': 'Dietary restrictions, special needs, or a message for the couple...',
+                'form_submit': 'SEND CONFIRMATION',
+                'footer_date': '💍 December 2026', 'footer_dev': 'Developed by',
+                'footer_rights': '© 2026 All rights reserved',
+                'meta_title': 'Rafael & Sofia - Wedding'
+            },
+            'es': {
+                'nav_home': 'Inicio', 'nav_who': 'Quiénes Somos', 'nav_date': 'Día de la Boda',
+                'nav_gallery': 'Galería', 'nav_rsvp': 'RSVP',
+                'hero_subtitle': '¡Llegó el día, nos casamos!',
+                'hero_date': 'DICIEMBRE DE 2026 | IGLESIA DE LA OLIVEIRA',
+                'count_days': 'Días', 'count_hours': 'Horas', 'count_minutes': 'Minutos', 'count_seconds': 'Segundos',
+                'home_story_title': 'Después de 8 años juntos', 'home_story_sub': 'DECIDIMOS CASARNOS',
+                'home_story_p1': 'Ocho años de amor, complicidad y sueños compartidos. Cada momento a tu lado fue especial, y ahora queremos celebrar esta unión con las personas que amamos.',
+                'home_story_p2': 'Nuestra historia comenzó un día común, pero se volvió extraordinaria. Te invitamos a ser parte del próximo capítulo de nuestras vidas.',
+                'btn_whoweare': 'QUIÉNES SOMOS',
+                'home_rsvp_title': 'Por eso, esperamos que vengas', 'home_rsvp_sub': 'POR FAVOR, AVÍSANOS',
+                'home_rsvp_p1': 'Tu presencia es el regalo más especial que podemos recibir. Por favor, confirma tu asistencia hasta el 30 de noviembre para que podamos organizar todo con cariño.',
+                'home_rsvp_p2': 'Queremos que cada detalle sea perfecto para celebrar este momento único a su lado. ¡Contamos con tu respuesta!',
+                'btn_rsvp_now': 'RSVP AHORA',
+                'who_title': 'Nuestra historia', 'who_sub': 'CÓMO EMPEZÓ TODO',
+                'who_p1': 'Nos conocimos en 2017, en un café del centro. Fue amor a primera vista, o al menos eso es lo que siempre decimos cuando contamos esta historia. Lo que comenzó como una conversación casual se convirtió en una conexión profunda que solo creció con el tiempo.',
+                'who_p2': 'Desde entonces, hemos compartido viajes, risas, desafíos y logros. Aprendimos juntos el valor de la complicidad, la paciencia y el amor incondicional. Cada año que pasó solo fortaleció nuestra certeza de que queremos pasar el resto de nuestras vidas el uno al lado del otro.',
+                'who_p3': 'Y ahora, en 2026, ha llegado el momento de oficializar esta unión ante Dios y ante todos ustedes, que son parte de nuestra historia. ¡No podemos esperar para compartir este día especial con quienes amamos!',
+                'date_title': 'Diciembre de 2026', 'date_sub': 'RESERVA LA FECHA',
+                'date_p1': '¡El gran día se acerca! Hemos preparado cada detalle con mucho cariño para celebrar este momento especial. La fecha exacta se anunciará pronto, ¡pero ya reserva el mes de diciembre de 2026!',
+                'date_item1_title': '💒 Ceremonia Religiosa', 'date_item1_desc': 'Horario por definir - Iglesia de la Oliveira, Rua do Ouro 797, 4150-555 Oporto',
+                'date_item2_title': '🎉 Fiesta para familia y amigos', 'date_item2_desc': 'Horario por definir - Restaurante Árvore Branca, Rua do Ouro 797, 4150 Oporto',
+                'date_item3_title': '👗 Código de Vestimenta', 'date_item3_desc': 'Traje de Paseo - Social (sugerimos colores claros y elegantes)',
+                'date_item4_title': '🚗 Estacionamiento', 'date_item4_desc': 'Estacionamiento disponible en el lugar de la fiesta. Recomendamos llegar con 15 minutos de antelación.',
+                'date_item5_title': '📅 Fecha exacta', 'date_item5_desc': '¡Pronto divulgaremos el día exacto! Mantente atento a nuestro sitio web y redes sociales.',
+                'gallery_title': 'Momentos especiales', 'gallery_sub': 'NUESTROS RECUERDOS',
+                'gallery_p': 'Algunos de nuestros momentos favoritos juntos. Cada foto cuenta una historia de amor y felicidad.',
+                'rsvp_title': '¿Contamos contigo?', 'rsvp_sub': 'POR FAVOR, AVÍSANOS',
+                'rsvp_p1': '¡Tu presencia es muy importante para nosotros! Por favor, confirma hasta el mes de <strong>noviembre de 2026</strong> para que podamos organizar todo con cariño y atención a los detalles.',
+                'rsvp_p2': 'Si tienes alguna restricción alimentaria o necesidad especial, no dejes de avisarnos en el campo de observaciones. Haremos lo posible para atender a todos nuestros invitados de la mejor manera.',
+                'rsvp_p3': '❤️ ¡No podemos esperar para celebrar contigo en diciembre de 2026!',
+                'form_name': 'Nombre completo *', 'form_name_placeholder': 'Ingresa tu nombre',
+                'form_email': 'Correo electrónico *', 'form_presence_label': '¿Estarás presente? *',
+                'form_presence_yes': '✅ Acepto la invitación con mucho gusto',
+                'form_presence_no': '❌ Lo siento, pero no puedo estar presente',
+                'form_guests': '¿Cuántos acompañantes?', 'form_msg': '¿Algo más que debamos saber? :)',
+                'form_msg_placeholder': 'Restricciones alimentarias, necesidades especiales o un mensaje para los novios...',
+                'form_submit': 'ENVIAR CONFIRMACIÓN',
+                'footer_date': '💍 Diciembre de 2026', 'footer_dev': 'Desarrollado por',
+                'footer_rights': '© 2026 Todos los derechos reservados',
+                'meta_title': 'Rafael & Sofia - Boda'
+            }
+        };
+
+        // ============ INICIALIZAÇÃO ============
+        AOS.init({ duration: 800, once: true, offset: 100 });
+        let currentLang = localStorage.getItem('siteLang') || 'pt';
+        let isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+        // Aplicar estado salvo
+        if (isDarkMode) document.body.classList.add('dark-mode');
+
+        // ============ LÓGICA DO FAB (LEQUE) ============
+        function toggleFab() {
+            const container = document.getElementById('fab-container');
+            const btn = document.getElementById('fab-main');
+            container.classList.toggle('open');
+            btn.classList.toggle('active');
+        }
+
+        function closeFab() {
+            document.getElementById('fab-container').classList.remove('open');
+            document.getElementById('fab-main').classList.remove('active');
+        }
+
+        // ============ LÓGICA DE IDIOMAS ============
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('siteLang', lang);
+            
+            const elements = document.querySelectorAll('[data-key]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang][key]) el.innerHTML = translations[lang][key];
+            });
+            document.title = translations[lang]['meta_title'];
+            
+            // Fechar o leque após escolher o idioma
+            closeFab();
+        }
+
+        // ============ LÓGICA DE MODO NOTURNO ============
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            localStorage.setItem('darkMode', isDarkMode);
+            document.getElementById('fab-darkmode').innerText = isDarkMode ? '☀️' : '🌙';
+            closeFab(); // Fecha o leque ao clicar
+        }
+
+        // ============ MENU HAMBÚRGUER ============
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('open');
+            document.querySelector('.hamburger').classList.toggle('active');
+        }
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-menu').classList.remove('open');
+                document.querySelector('.hamburger').classList.remove('active');
+            });
+        });
+
+        // ============ SISTEMA DE PÁGINAS ============
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById(pageId);
+            if(target) { target.classList.add('active'); setTimeout(() => AOS.refresh(), 100); }
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('onclick')?.includes(pageId)) link.classList.add('active');
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            closeFab(); // Fecha o leque ao navegar
+        }
+
+        // ============ CONTADOR REGRESSIVO ============
+        function updateCountdown() {
+            const weddingDate = new Date('2026-12-15T12:30:00').getTime();
+            const distance = weddingDate - new Date().getTime();
+            if (distance < 0) return;
+
+            document.getElementById('days').textContent = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+            document.getElementById('hours').textContent = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // ============ BOTÃO VOLTAR AO TOPO ============
+        window.addEventListener('scroll', () => {
+            document.getElementById('back-to-top').style.display = window.pageYOffset > 300 ? 'block' : 'none';
+        });
+        document.getElementById('back-to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // ============ LIGHTBOX ============
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+        // ============ RSVP FORM (Salve seu e-mail) ============
+        const FORM_SUBMIT_URL = 'https://formsubmit.co/ajax/SEU_EMAIL';
+
+        document.getElementById('rsvp-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const presenca = document.querySelector('input[name="presenca"]:checked');
+            const acompanhantes = document.getElementById('acompanhantes').value || '0';
+            const mensagem = document.getElementById('mensagem').value.trim();
+
+            if (!nome || !email || !presenca) return showToast('Preencha todos os campos obrigatórios (*)', 'error');
+            if (!email.includes('@')) return showToast('Insira um e-mail válido', 'error');
+
+            const data = { nome, email, presenca: presenca.value === 'sim' ? 'Confirmado' : 'Não confirmado', acompanhantes, mensagem };
+            const btn = this.querySelector('button[type="submit"]');
+            const text = btn.textContent;
+            btn.textContent = 'Enviando...'; btn.disabled = true;
+
+            try {
+                const res = await fetch(FORM_SUBMIT_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+                if (res.ok) { showToast('✅ Confirmação enviada com sucesso!'); this.reset(); }
+                else { 
+                    showToast('📧 Abrindo seu e-mail...'); 
+                    window.location.href = `mailto:seu-email@exemplo.com?subject=RSVP - ${nome}&body=Nome: ${nome}%0AEmail: ${email}%0APresença: ${data.presenca}%0AAcompanhantes: ${acompanhantes}%0AMensagem: ${mensagem}`;
+                }
+            } catch { showToast('❌ Erro ao enviar. Tente novamente.', 'error'); }
+            finally { btn.textContent = text; btn.disabled = false; }
+        });
+
+        function showToast(msg, type = 'success') {
+            const t = document.getElementById('toast');
+            t.textContent = msg; t.className = 'toast' + (type === 'error' ? ' error' : '');
+            t.classList.add('show');
+            clearTimeout(t.timeout); t.timeout = setTimeout(() => t.classList.remove('show'), 5000);
+        }
+
+        // ============ APLICAR IDIOMA SALVO ============
+        document.addEventListener('DOMContentLoaded', () => setLanguage(currentLang));
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 > Site de casamento com contagem regressiva, galeria interativa, formulário RSVP, modo noturno e suporte multilíngue.
 
 🌐 **Website:** https://www.pablogdev.com.br  
-🚀 **Demo:** https://pablog-7.github.io/rafael-sofia-wedding/
+🚀 **Demo:** https://pablog-7.github.io/casamento-site-exemplo/
 
 ---
 

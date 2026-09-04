@@ -229,30 +229,146 @@
             .gallery-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
+        /* ============================================= */
+        /* NOVA VERSÃO MOBILE - CONVITE EDITORIAL */
+        /* ============================================= */
         @media (max-width: 768px) {
+            /* Header */
             header { padding: 15px 0; }
             .hamburger { display: flex; }
             
-            nav { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: #fff; padding: 20px; border-bottom: 1px solid #f0f0f0; box-shadow: 0 5px 20px rgba(0,0,0,0.1); flex-direction: column; }
-            body.dark-mode nav { background: #1a1a1a; border-bottom-color: #333; }
+            nav { 
+                display: none; 
+                position: absolute; 
+                top: 70px; 
+                left: 0; 
+                width: 100%; 
+                background: #fff; 
+                padding: 20px; 
+                border-bottom: 1px solid #f0f0f0; 
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1); 
+                flex-direction: column; 
+            }
+            body.dark-mode nav { 
+                background: #1a1a1a; 
+                border-bottom-color: #333; 
+            }
             nav.open { display: flex; }
-            nav a { margin: 10px 0; padding: 10px; width: 100%; text-align: center; border-radius: 4px; }
+            nav a { 
+                margin: 10px 0; 
+                padding: 10px; 
+                width: 100%; 
+                text-align: center; 
+                border-radius: 4px; 
+            }
             nav a:hover { background: #f5f5f5; }
             body.dark-mode nav a:hover { background: #2a2a2a; }
 
-            .hero-section { min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0; background-image: url('img/casam1.webp'); background-size: cover; background-position: center center; position: relative; }
-            .hero-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1; }
-            .hero-content { max-width: 100%; padding: 0 20px; z-index: 2; transform: translateX(0); }
-            .hero-image-wrapper { display: none; }
-            .date-line { justify-content: center; }
-            .date-line .line { display: none; }
-            .hero-content .main-title { color: #fff; text-shadow: 0 4px 10px rgba(0,0,0,0.8); }
-            .hero-content .script-title { color: #e6b255; text-shadow: 0 4px 10px rgba(0,0,0,0.8); }
-            .hero-content .date-line { color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
-            .countdown { justify-content: center; }
-            .countdown-item { padding: 10px 15px; min-width: 60px; }
-            .countdown-item .number { font-size: 1.8rem; }
-            .two-columns { flex-direction: column !important; gap: 40px; }
+            /* ============================================= */
+            /* HERO - VERSÃO CONVITE EDITORIAL */
+            /* ============================================= */
+            .hero-section {
+                min-height: auto;
+                display: flex;
+                flex-direction: column;
+                padding: 0;
+                background: #fff;
+                text-align: center;
+                background-image: none;
+                position: relative;
+            }
+
+            .hero-section::before {
+                display: none;
+            }
+
+            .hero-image-wrapper {
+                display: block;
+                position: relative;
+                width: 100%;
+                height: 48vh;
+                top: auto;
+                right: auto;
+                transform: none;
+                order: 1;
+                z-index: 1;
+            }
+
+            .hero-image-wrapper img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center center;
+            }
+
+            .hero-content {
+                order: 2;
+                max-width: 100%;
+                padding: 32px 20px 40px;
+                transform: none;
+                background: #fff;
+                position: relative;
+                z-index: 2;
+            }
+
+            .hero-content .script-title {
+                color: #e6b255;
+                text-shadow: none;
+                margin-top: 0;
+                font-size: 1.55rem;
+            }
+
+            .hero-content .main-title {
+                color: #222;
+                text-shadow: none;
+                font-size: 2rem;
+                margin: 8px 0;
+            }
+
+            .hero-content .date-line {
+                color: #777;
+                text-shadow: none;
+                justify-content: center;
+                font-size: 0.75rem;
+            }
+
+            .date-line .line {
+                display: none;
+            }
+
+            .countdown {
+                justify-content: center;
+                gap: 8px;
+                margin: 24px 0 0;
+                flex-wrap: nowrap;
+            }
+
+            .countdown-item {
+                flex: 1;
+                min-width: 0;
+                padding: 12px 5px;
+                background: #fafafa;
+                border: 1px solid #eee;
+                box-shadow: none;
+                border-radius: 10px;
+            }
+
+            body.dark-mode .countdown-item {
+                background: #2a2a2a;
+                border-color: #444;
+            }
+
+            .countdown-item .number {
+                font-size: 1.5rem;
+            }
+
+            /* ============================================= */
+            /* DEMAIS AJUSTES MOBILE */
+            /* ============================================= */
+            .two-columns { 
+                flex-direction: column !important; 
+                gap: 40px; 
+            }
             .col-image { width: 100%; }
             .main-title { font-size: 2.8rem; }
             .script-title { font-size: 2rem; }
@@ -267,12 +383,45 @@
             .fab-option { width: 38px; height: 38px; }
         }
 
+        /* ============================================= */
+        /* EFEITO CARTÃO MODERNO - OPÇÃO EXTRA */
+        /* ============================================= */
+        @media (max-width: 768px) {
+            /* Versão com cartão sobreposto - descomente para usar */
+            /*
+            .hero-image-wrapper {
+                height: 60vh;
+            }
+            
+            .hero-content {
+                margin-top: -30px;
+                padding: 32px 24px 40px;
+                border-radius: 24px 24px 0 0;
+                background: #fff;
+                position: relative;
+                z-index: 2;
+                box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+            }
+
+            body.dark-mode .hero-content {
+                background: #1a1a1a;
+            }
+            */
+        }
+
         @media (max-width: 480px) {
             .main-title { font-size: 2.2rem; }
             .script-title { font-size: 1.6rem; }
             .gallery-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
             .countdown-item { padding: 8px 12px; min-width: 50px; }
             .countdown-item .number { font-size: 1.5rem; }
+            
+            .hero-content {
+                padding: 24px 16px 32px;
+            }
+            .hero-image-wrapper {
+                height: 40vh;
+            }
         }
     </style>
 </head>
@@ -333,6 +482,9 @@
     <!-- PÁGINA 1: INÍCIO -->
     <div id="home" class="page active">
         <section class="hero-section">
+            <div class="hero-image-wrapper">
+                <img src="img/casam1.webp" alt="Rafael e Sofia sorrindo juntos" loading="lazy">
+            </div>
             <div class="container hero-content">
                 <h2 class="script-title" data-aos="fade-up" data-key="hero_subtitle">O dia chegou, vamos-nos casar!</h2>
                 <h1 class="main-title" data-aos="fade-up" data-aos-delay="100">RAFAEL & SOFIA</h1>
@@ -359,9 +511,6 @@
                         <span class="label" data-key="count_seconds">Segundos</span>
                     </div>
                 </div>
-            </div>
-            <div class="hero-image-wrapper">
-                <img src="img/casam1.webp" alt="Rafael e Sofia sorrindo juntos" loading="lazy">
             </div>
         </section>
         
